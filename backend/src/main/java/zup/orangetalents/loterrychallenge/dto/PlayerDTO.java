@@ -7,12 +7,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 import zup.orangetalents.loterrychallenge.entities.Player;
 
 public class PlayerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	@NotBlank
+	@Email(message = "Please Entry with a Valid E-mail")
 	private String email;
 	
 	private List<BetFindByEmailDTO> bets = new ArrayList<>();

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import zup.orangetalents.loterrychallenge.dto.PlayerDTO;
 import zup.orangetalents.loterrychallenge.entities.Player;
 import zup.orangetalents.loterrychallenge.repositories.PlayerRepository;
+import zup.orangetalents.loterrychallenge.services.exceptions.EntityNotFoundException;
 
 @Service
 public class PlayerService {
@@ -34,7 +35,7 @@ public class PlayerService {
 	@Transactional(readOnly = true)
 	public PlayerDTO findByEmail(String email) {
 		Optional<Player> obj = Optional.ofNullable(playerRepository.findByEmail(email));
-		Player entity = obj.get();
+		Player entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity Not Found!"));
 		return new PlayerDTO(entity);
 	}
 	

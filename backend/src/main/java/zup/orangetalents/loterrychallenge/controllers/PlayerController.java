@@ -31,6 +31,13 @@ public class PlayerController {
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	@GetMapping(value = "/email")
+	public ResponseEntity<List<PlayerDTO>> findAllEmails() {
+		List<PlayerDTO> list = playerService.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	
 	@GetMapping(value = "/email/{email}")
 	public ResponseEntity<PlayerDTO> findBetByEmail(@PathVariable String email) {
 		PlayerDTO dto = playerService.findByEmail(email);

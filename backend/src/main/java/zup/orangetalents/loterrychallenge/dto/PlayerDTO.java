@@ -2,6 +2,8 @@ package zup.orangetalents.loterrychallenge.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,12 +24,14 @@ public class PlayerDTO implements Serializable {
 		this.id = id;
 		this.email = email;
 	}
-	
+		
 	public PlayerDTO(Player entity) {
 		id = entity.getId();
 		email = entity.getEmail();
 		bets = entity.getBets().stream().
 			   map(x -> new BetFindByEmailDTO(x)).collect(Collectors.toList());
+		//Sorts the Bet List by ASC Creation 
+		Collections.sort(bets, Comparator.comparing(BetFindByEmailDTO::getCreatAt));
 	}
 
 	public Long getId() {

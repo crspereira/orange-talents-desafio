@@ -5,7 +5,7 @@ import java.time.Instant;
 
 import zup.orangetalents.loterrychallenge.entities.Bet;
 
-public class BetFindByEmailDTO implements Serializable{
+public class BetFindByEmailDTO implements Comparable<BetFindByEmailDTO>, Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
@@ -49,6 +49,12 @@ public class BetFindByEmailDTO implements Serializable{
 
 	public void setCreatAt(Instant creatAt) {
 		this.creatAt = creatAt;
+	}
+
+	@Override
+	// Sort the List by ASC
+	public int compareTo(BetFindByEmailDTO o) {
+		return creatAt.compareTo(o.getCreatAt());
 	}
 
 }

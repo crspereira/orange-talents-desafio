@@ -39,7 +39,7 @@ public class BetController {
 	}
 	
 	 @PostMapping
-	 public ResponseEntity<BetDTO> insert(@Valid @RequestBody BetInsertEmailDTO obj) {
+	 public ResponseEntity<BetDTO> insertBetEmail(@Valid @RequestBody BetInsertEmailDTO obj) {
 		 BetDTO dto = betService.insert(obj);
 		 URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(dto.getId()).toUri();

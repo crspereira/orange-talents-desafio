@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import zup.orangetalents.loterrychallenge.services.exceptions.DatabaseException;
-import zup.orangetalents.loterrychallenge.services.exceptions.EntityNotFoundException;
+import zup.orangetalents.loterrychallenge.services.exceptions.ControllerNotFoundException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
 	
-	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException e, HttpServletRequest request) {
+	@ExceptionHandler(ControllerNotFoundException.class)
+	public ResponseEntity<StandardError> entityNotFound(ControllerNotFoundException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		StandardError error = new StandardError();
 		error.setTimestamp(Instant.now());

@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import zup.orangetalents.loterrychallenge.dto.PlayerDTO;
+import zup.orangetalents.loterrychallenge.dto.PlayerUpdateDTO;
 import zup.orangetalents.loterrychallenge.services.PlayerService;
 
 @RestController
@@ -28,6 +31,12 @@ public class PlayerController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<PlayerDTO> findById(@PathVariable Long id) {
 		PlayerDTO dto = playerService.findById(id);
+		return ResponseEntity.ok().body(dto);
+	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<PlayerUpdateDTO> update(@PathVariable Long id, @RequestBody PlayerUpdateDTO dto) {
+		dto = playerService.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	

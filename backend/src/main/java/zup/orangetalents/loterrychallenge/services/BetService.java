@@ -17,7 +17,7 @@ import zup.orangetalents.loterrychallenge.entities.Player;
 import zup.orangetalents.loterrychallenge.entities.util.LotteryNumberGenerator;
 import zup.orangetalents.loterrychallenge.repositories.BetRepository;
 import zup.orangetalents.loterrychallenge.repositories.PlayerRepository;
-import zup.orangetalents.loterrychallenge.services.exceptions.EntityNotFoundException;
+import zup.orangetalents.loterrychallenge.services.exceptions.ControllerNotFoundException;
 
 @Service
 public class BetService {
@@ -38,7 +38,7 @@ public class BetService {
 	public BetDTO findById(Long id) {
 		Optional<Bet> obj = betRepository.findById(id);
 		//Bet entity = obj.get();
-		Bet entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity Not Found!"));
+		Bet entity = obj.orElseThrow(() -> new ControllerNotFoundException("Entity Not Found!"));
 		return new BetDTO(entity);
 	}
 	

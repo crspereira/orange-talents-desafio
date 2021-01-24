@@ -15,6 +15,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "tb_player")
 public class Player implements Serializable {
@@ -29,48 +32,15 @@ public class Player implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updatAt;
 	
-	//@JsonIgnore
 	@OneToMany(mappedBy = "player")
 	private List<Bet> bets = new ArrayList<>();
 	
 	public Player() {
 	}
-
+	
 	public Player(Long id, String email) {
 		this.id = id;
 		this.email = email;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public Instant getCreatAt() {
-		return creatAt;
-	}
-
-	public Instant getUpdatAt() {
-		return updatAt;
-	}
-
-	public List<Bet> getBets() {
-		return bets;
-	}
-
-	public void setBets(List<Bet> list) {
-		this.bets = list;
 	}
 	
 	@PrePersist
@@ -82,33 +52,4 @@ public class Player implements Serializable {
 		updatAt = Instant.now();
 	}
 
-	@Override
-	public String toString() {
-		return "Player [id=" + id + ", email=" + email + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Player other = (Player) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}	
 }

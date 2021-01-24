@@ -10,8 +10,10 @@ import java.util.stream.Collectors;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
 import zup.orangetalents.loterrychallenge.entities.Player;
 
+@Data
 public class PlayerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -24,12 +26,7 @@ public class PlayerDTO implements Serializable {
 	
 	public PlayerDTO() {
 	}
-
-	public PlayerDTO(Long id, String email) {
-		this.id = id;
-		this.email = email;
-	}
-		
+	
 	public PlayerDTO(Player entity) {
 		id = entity.getId();
 		email = entity.getEmail();
@@ -39,23 +36,4 @@ public class PlayerDTO implements Serializable {
 		Collections.sort(bets, Comparator.comparing(BetFindByEmailDTO::getCreatAt));
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public List<BetFindByEmailDTO> getBets() {
-		return bets;
-	}
 }

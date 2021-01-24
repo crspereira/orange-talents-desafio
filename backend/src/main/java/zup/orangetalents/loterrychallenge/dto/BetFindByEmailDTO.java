@@ -3,8 +3,10 @@ package zup.orangetalents.loterrychallenge.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import lombok.Data;
 import zup.orangetalents.loterrychallenge.entities.Bet;
 
+@Data
 public class BetFindByEmailDTO implements Comparable<BetFindByEmailDTO>, Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -14,12 +16,6 @@ public class BetFindByEmailDTO implements Comparable<BetFindByEmailDTO>, Seriali
 	
 	public BetFindByEmailDTO() {
 	}
-
-	public BetFindByEmailDTO(Long id, String betNumbers, Instant creatAt) {
-		this.id = id;
-		this.betNumbers = betNumbers;
-		this.creatAt = creatAt;
-	}
 	
 	public BetFindByEmailDTO(Bet entity) {
 		id = entity.getId();
@@ -27,32 +23,7 @@ public class BetFindByEmailDTO implements Comparable<BetFindByEmailDTO>, Seriali
 		creatAt = entity.getCreatAt();
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getBetNumbers() {
-		return betNumbers;
-	}
-
-	public void setBetNumbers(String betNumbers) {
-		this.betNumbers = betNumbers;
-	}
-
-	public Instant getCreatAt() {
-		return creatAt;
-	}
-
-	public void setCreatAt(Instant creatAt) {
-		this.creatAt = creatAt;
-	}
-
 	@Override
-	// Sort the List by ASC
 	public int compareTo(BetFindByEmailDTO o) {
 		return creatAt.compareTo(o.getCreatAt());
 	}

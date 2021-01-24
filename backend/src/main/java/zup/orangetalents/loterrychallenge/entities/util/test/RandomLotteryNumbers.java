@@ -1,4 +1,4 @@
-package zup.orangetalents.loterrychallenge;
+package zup.orangetalents.loterrychallenge.entities.util.test;
 
 import java.util.Arrays;
 import java.util.Random;

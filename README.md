@@ -1,5 +1,5 @@
 # Orange Talents Desafio
-Orange Talents - Desafio API de Loteria em BOLG 
+Orange Talents - Desafio API de Loteria em BLOG 
 
 BackEnd Hosted into Heroku:
 https://orange-talents-lottery.herokuapp.com
